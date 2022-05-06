@@ -1,3 +1,8 @@
+/*
+* Script de criação de um Back-End para recebimento de dados do dispositivo ESP-01
+* Projeto de pesquisa do IFRN, construção de uma estação meteorológia de baixo custo
+*/
+
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
