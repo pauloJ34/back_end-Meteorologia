@@ -1,75 +1,89 @@
+//Bibliotecas utilizadas
 #include <DHT.h>
 #include <SoftwareSerial.h>
-#define DHTYPE DHT22
+#include <LiquidCrystal_I2C.h>
 
-// Pinos do sensor ultrassônico
+//Defines
+#define DHTPIN 2
+#define DHTYPE DHT22
 #define trigPin 8
 #define echoPin 9
+#define LDRPIN A0
+#define HIGROPIN A1
 
-// variáveis usadas no sensor ultrassônico
-long duration;
-int distance;
-
-
+//Instanciação de classes
+DHT dht(DHTPIN, DHTYPE);
+LiquidCrystal_I2C lcd(0x27,16,2);
 SoftwareSerial myserial(6,7);
 
-DHT dht_sensor(2, DHTYPE);
-
 void setup() {
-  // put your setup code here, to run once:
+
+  // Inicializações
   Serial.begin(9600);
   myserial.begin(115200);
-
+  dht.begin();
+  lcd.init();
+  lcd.setBacklight(HIGH);
+  lcd.setCursor(0, 0);
+  lcd.print("TEMP: ");
+  lcd.setCursor(0, 1);
+  lcd.print("UMID: ");
+  
+  //Pinmodes
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  pinMode(A0, INPUT);
-  pinMode(A1, INPUT);
+  pinMode(LDRPIN, INPUT);
+  pinMode(HIGROPIN, INPUT);
   
-    
-  dht_sensor.begin();  
 }
 
 void loop() {
-  String buff="";
-  // put your main code here, to run repeatedly:
-  Serial.print("Temperature: ");
-  Serial.println(dht_sensor.readTemperature());
-  Serial.print("Humidity: ");
-  Serial.println(dht_sensor.readHumidity());
-  Serial.print("Distance: ");
-  Serial.println(calculateDistance());
-  Serial.print("Luminosity: ");
-  Serial.println(analogRead(A0));
-  Serial.print("Ground Humidity: ");
-  Serial.println(map(analogRead(A1), 1023, 150, 0, 100));
-  
-  buff+=String(dht_sensor.readTemperature());
-  buff+='#';
-  buff+=String(dht_sensor.readHumidity());
-  buff+='#';
-  buff+=String(calculateDistance());
-  buff+='#';
-  buff+=String(analogRead(A0));
-  buff+='#';
-  buff+=String(map(analogRead(A1), 1023, 150, 0, 100));
-  buff+='#';
-
-  Serial.println(buff);
-  myserial.println(buff);
-
+  updateLCD();
+  enviarDados();
   delay(5000);
 }
 
+//Atualiza visor LCD
+void updateLCD(){
+  lcd.setCursor(6, 0);
+  lcd.print(String(dht.readTemperature()));
+  lcd.setCursor(6, 1);
+  lcd.print(String(dht.readHumidity()));
+}
 
+//Ler humidade do solo
+int readSoilMoisture(){
+  return map(analogRead(HIGROPIN), 1023, 150, 0, 100);
+}
+
+//Caucular distancia do HC-SR04
 int calculateDistance(void){
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-
-  duration = pulseIn(echoPin, HIGH);
-  distance = duration * 0.034 /2;
-
+  long duration = pulseIn(echoPin, HIGH);
+  int distance = duration * 0.034 /2;
   return distance;
+}
+
+//Envio arduino esp
+void enviarDados(){
+  String buff="";
+  buff+=String(dht.readTemperature());
+  buff+='#';
+  buff+=String(dht.readHumidity());
+  buff+='#';
+  buff+=String(calculateDistance());
+  buff+='#';
+  buff+=String(analogRead(LDRPIN));
+  buff+='#';
+  buff+=String(readSoilMoisture());
+  buff+='#';
+  myserial.println(buff);
+
+  //Debug
+  Serial.println(buff);
+  Serial.println(myserial.readString());
 }
