@@ -53,10 +53,10 @@ app.get("/update", (req,res)=>{
 })
 
 server.listen(port,"0.0.0.0", () => {
-    newRepositorio();
-    newFileCSV();
-		readFileCsv();
-    console.log(`Servidor iniciou em http://localhost:${port}/`);
+	newRepositorio();
+	newFileCSV();
+	readFileCsv();
+	console.log(`Servidor iniciou em http://localhost:${port}/`);
 })
 
 io.on('connection', (socket)=>{
@@ -78,16 +78,16 @@ function dataTime(){
 }
 
 async function newRepositorio(){
-    const dir = __dirname+"/dados";
-    if(!fs.existsSync(dir)){
-        fs.mkdir(dir,(err)=>{
-            if(err){
-                console.log("erro ao criar o diretório!");
-                return;
-            }
-					console.log("diretório criado com sucesso.");
-        })
-    }else{ console.log("diretório já existe."); }
+	const dir = __dirname+"/dados";
+	if(!fs.existsSync(dir)){
+		fs.mkdir(dir,(err)=>{
+			if(err){
+				console.log("erro ao criar o diretório!");
+				return;
+			}
+			console.log("diretório criado com sucesso.");
+		})
+	}else{ console.log("diretório já existe."); }
 }
 
 async function newFileCSV(){
@@ -95,13 +95,13 @@ async function newFileCSV(){
 	const dado = "data,time,temperatura,umidade do ar,pluviometro,luminosidade,umidade do solo";
 	//console.log(fs.existsSync(dir))
 	if(!fs.existsSync(dir)){
-        fs.writeFile(dir,dado,(err)=>{
-            if (err) {
-            	console.log("erro ao criar o arquivo");
-            	return;
-            }console.log("arquivo criado com sucesso.");
-        })
-    }else{ console.log("arquivo já existe."); }
+		fs.writeFile(dir,dado,(err)=>{
+			if (err) {
+				console.log("erro ao criar o arquivo");
+				return;
+			}console.log("arquivo criado com sucesso.");
+		})
+	}else{ console.log("arquivo já existe."); }
 }
 async function writeFileCsv(dados){
 	const file=__dirname+'/dados/dados.csv';
