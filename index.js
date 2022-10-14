@@ -9,13 +9,15 @@ const server = require('http').createServer(app);
 const io = require("socket.io")(server);
 const fs = require('fs');
 const port = 3000;
+const arquive = "/dados/dados.csv"
 let somente_dados = [];
 let dadosArray = {};
 let contador = 0;
 
-const dadosAnSend = ()=>{
+function dadosAnSend (){
 	let return_dado=[];
-	for(let x = 0; x<500 ; x++){	//pegar 500 ultimos itens
+	const lenght = (somente_dados.length<500)?somente_dados.length: 500
+	for(let x = 0; x<lenght ; x++){	//pegar 500 ultimos itens
 		return_dado.push(somente_dados[(somente_dados.length-1)-x]);
 	}
 	return return_dado;
@@ -27,7 +29,7 @@ app.get("/", (req , res)=>{
 })
 /*baixar arquino csv*/
 app.get("/dados",(req, res) =>{
-	res.sendFile(__dirname+"/dados/dados.csv");
+	res.sendFile(__dirname+arquive);
 })
 app.get("/update", (req,res)=>{
 	let dados=dataTime();
@@ -91,7 +93,7 @@ async function newRepositorio(){
 }
 
 async function newFileCSV(){
-	const dir = __dirname+"/dados/dados.csv";
+	const dir = __dirname+arquive;
 	const dado = "data,time,temperatura,umidade do ar,pluviometro,luminosidade,umidade do solo";
 	//console.log(fs.existsSync(dir))
 	if(!fs.existsSync(dir)){
@@ -104,7 +106,7 @@ async function newFileCSV(){
 	}else{ console.log("arquivo já existe."); }
 }
 async function writeFileCsv(dados){
-	const file=__dirname+'/dados/dados.csv';
+	const file=__dirname+arquive;
 	if(fs.existsSync(file)){
 		write(dados);
 	}else{
@@ -113,7 +115,7 @@ async function writeFileCsv(dados){
 	}
 }
 async function write(dados){
-	fs.appendFile(__dirname+'/dados/dados.csv',dados,(err)=>{
+	fs.appendFile(__dirname+arquive,dados,(err)=>{
 		if(err){
 			console.log("erro ao escrever no arquivo");
 			return Promise.resolve()
@@ -122,7 +124,7 @@ async function write(dados){
 	})
 }
 function readFileCsv(){
-	fs.readFile(__dirname+"/dados/dados.csv", 'utf8', (err, dado) => {
+	fs.readFile(__dirname+arquive, 'utf8', (err, dado) => {
 		if(err){
 			console.log("erro ao ler");
 			return
