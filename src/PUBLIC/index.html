@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js" integrity="sha512-mHO4BJ0ELk7Pb1AzhTi3zvUeRgq3RXVOu9tTRfnA6qOxGK4pG2u57DJYolI4KrEnnLTcH9/J5wNOozRTDaybXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel='stylesheet' href="style.css">
+	<title>Document</title>
+</head>
+<body>
+	<div class="updates">
+		<p><strong>DATA:</strong> <span id="data">null</span></p>
+		<p><strong>HORA:</strong> <span id="hora">null</span></p>
+		<p><strong>FIELD1:</strong> <span id="fild1">null</span></p>
+		<p><strong>FIELD2:</strong> <span id="fild2">null</span></p>
+		<p><strong>FIELD3:</strong> <span id="fild3">null</span></p>
+		<p><strong>FIELD4:</strong> <span id="fild4">null</span></p>
+		<p><strong>FIELD5:</strong> <span id="fild5">null</span></p>
+	</div>
+	<a class="bt-download" href="/dados">Download Dados</a>
+	 <div class="contain">
+		<div class="contain_graficos">
+			<div class="graficos">
+				<canvas id="myChart"></canvas>
+			</div>
+			<div class="graficos">
+				<canvas id="myChart"></canvas>
+			</div>
+			<div class="graficos">
+				<canvas id="myChart"></canvas>
+			</div>
+			<div class="graficos">
+				<canvas id="myChart"></canvas>
+			</div>
+			<div class="graficos">
+				<canvas id="myChart"></canvas>
+			</div>
+		</div>
+ 	</div>
+	
+
+</body>
+	<script src='function.js'></script>
+	<script src='socket.js'></script>
+</html>

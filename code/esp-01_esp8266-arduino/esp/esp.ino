@@ -4,14 +4,14 @@
 #include <ESP8266WiFiMulti.h>
 #include <WiFiClientSecureBearSSL.h>
  
-const char* ssid = "wIFRN-IoT";
-const char* password = "deviceiotifrn";
+//const char* ssid = "wIFRN-IoT";
+//const char* password = "deviceiotifrn";
 
 ESP8266WiFiMulti WiFiMulti;
 
-/*const char* ssid = "LAPTOP";
-const char* password = "vaitersenhanao";*/
-const char* keyWrite = "2ZLXHRY3WMCEQXX8";//chave conta compartilhada
+const char* ssid = "LAPTOP";
+const char* password = "vaitersenhanao";
+//const char* keyWrite = "2ZLXHRY3WMCEQXX8";//chave conta compartilhada
 
 const char fingerprint[] PROGMEM =  "28 B6 E6 50 1C 29 57 A2 39 6C 6C C3 F5 7C 36 69 B7 4E DB FA";
 

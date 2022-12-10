@@ -10,10 +10,14 @@ const variavel= [
 	document.querySelector("#fild5")
 ];
 socket.on("dados_recebidos", (arg)=>{
-	Object.keys(arg).forEach((key,id)=>{
-		variavel[id].innerText=arg[key];
+  arg = arg.split(",")
+      // console.log(arg)
+	arg.forEach((key,id)=>{
+    key = key.replace('\n','')
+		variavel[id].innerText=key;
 	})
 })
 socket.on('all_dados', (arg)=>{
+  console.log(arg)
 	addValorTabela(arg);
 })

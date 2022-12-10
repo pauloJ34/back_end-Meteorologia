@@ -1,4 +1,5 @@
 function addValorTabela(arg){
+  // console.log(arg)
 	function valores(max,n){
 		let valor=[];
 		for (let x=0; x < max ; x++){
@@ -16,14 +17,19 @@ function addValorTabela(arg){
 	const labels =['temperatura', 'umidade do ar', 'pluviometro', 'luminosidade', 'umidade do solo']
 	const ctx = document.querySelectorAll('#myChart');
 	ctx.forEach((elemento,indice)=>{
-			
+		// console.log(arg)
+    let chartStatus = Chart.getChart(elemento); // <canvas> id
+    if (chartStatus != undefined) {
+      chartStatus.destroy();
+    }
+    
 		const data =new Chart(elemento.getContext('2d'),{
 		type: "line",
 		data: {
-			labels: dataHora(max),
+			labels: dataHora(max).reverse(),
 			datasets: [{
 				label: labels[indice],
-				data: valores(max,(indice+2)),
+				data: valores(max,(indice+2)).reverse(),
 				fill: false,
 				borderWidth: 1,
 				borderColor: 'rgb(150, 0, 0)',
@@ -36,6 +42,6 @@ function addValorTabela(arg){
 				}]
 			},
 		})
-		elemento.getContext('2d').canvas.parentNode.style.width= "400px";
+		//elemento.getContext('2d').canvas.parentNode.style.width= "400px";
 	})
 }
