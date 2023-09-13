@@ -1,67 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"
-			integrity="sha512-mHO4BJ0ELk7Pb1AzhTi3zvUeRgq3RXVOu9tTRfnA6qOxGK4pG2u57DJYolI4KrEnnLTcH9/J5wNOozRTDaybXg=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		></script>
-		<link rel="stylesheet" href="style.css" />
-		<title>Monitor</title>
-	</head>
-	<body>
-		<button class="button-toggle">></button>
 
-		<main class="main-contain">
-			<div class="contain">
-				<h1>Ultimos Dados</h1>
-				<div>
-					<div class="updates">
-						<p><strong>DATA:</strong> <span id="data">null</span></p>
-						<p><strong>HORA:</strong> <span id="hora">null</span></p>
-					</div>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"
+		integrity="sha512-mHO4BJ0ELk7Pb1AzhTi3zvUeRgq3RXVOu9tTRfnA6qOxGK4pG2u57DJYolI4KrEnnLTcH9/J5wNOozRTDaybXg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="style.css" />
+	<title>Monitor</title>
+</head>
+
+<body>
+	<button class="button-toggle">X</button>
+
+	<main class="main-contain">
+		<div class="contain">
+			<h1>Ultimos Dados</h1>
+			<div>
+				<div class="updates">
+					<p><strong>DATA:</strong> <span id="data">null</span></p>
+					<p><strong>HORA:</strong> <span id="hora">null</span></p>
 				</div>
-				<div>
-					<div class="updates">
-						<p><strong>Temperatura:</strong> <span id="fild1">null</span></p>
-						<p><strong>Umidade do Ar:</strong> <span id="fild2">null</span></p>
-						<p><strong>Pluviometro:</strong> <span id="fild3">null</span></p>
-						<p><strong>Luminosidade:</strong> <span id="fild4">null</span></p>
-						<p><strong>Umidade do Solo:</strong> <span id="fild5">null</span></p>
-					</div>
+				<div class="updates">
+					<p><strong>Temperatura:</strong> <span id="fild1">null</span></p>
+					<p><strong>Umidade do Ar:</strong> <span id="fild2">null</span></p>
+					<p><strong>Pluviometro:</strong> <span id="fild3">null</span></p>
+					<p><strong>Luminosidade:</strong> <span id="fild4">null</span></p>
+					<p><strong>Umidade do Solo:</strong> <span id="fild5">null</span></p>
 				</div>
+
 				<a class="bt-download" href="/dados">Download Dados</a>
 			</div>
-			<div class="contain_graficos">
-				<div class="contain-graphics">
-					<h1>Gráficos</h1>
-					<div class="graficos">
-						<canvas id="myChart"></canvas>
-					</div>
-					<div class="graficos">
-						<canvas id="myChart"></canvas>
-					</div>
-					<div class="graficos">
-						<canvas id="myChart"></canvas>
-					</div>
-					<div class="graficos">
-						<canvas id="myChart"></canvas>
-					</div>
-					<div class="graficos">
-						<canvas id="myChart"></canvas>
-					</div>
+			<h2>Gráficos</h2>
+			<div class="contain-graphics-select">
+				<button class="bt-graphics-select" id="temp">Temperatura</button>
+				<button class="bt-graphics-select" id="humi">Humidade</button>
+				<button class="bt-graphics-select" id="pluv">Pluviometro</button>
+				<button class="bt-graphics-select" id="lumi">Luminosidade</button>
+				<button class="bt-graphics-select" id="solo">Solo</button>
+			</div>
+		</div>
+		<div class="contain_graficos">
+			<div class="contain-graphics">
+				<div class="graficos">
+					<canvas id="myChart"></canvas>
+				</div>
+				<div class="graficos">
+					<canvas id="myChart"></canvas>
+				</div>
+				<div class="graficos">
+					<canvas id="myChart"></canvas>
+				</div>
+				<div class="graficos">
+					<canvas id="myChart"></canvas>
+				</div>
+				<div class="graficos">
+					<canvas id="myChart"></canvas>
 				</div>
 			</div>
-		</main>
-		
+		</div>
+	</main>
 
-	</body>
-	<script src="function.js"></script>
-	<script src="interactions.js"></script>
-	<script src="socket.js"></script>
+
+</body>
+<script src="function.js"></script>
+<script src="interactions.js"></script>
+<script src="socket.js"></script>
+
 </html>

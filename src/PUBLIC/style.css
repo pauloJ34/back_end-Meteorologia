@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,700;0,900;1,200&display=swap');
 * {
 	margin: 0;
 	padding: 0;
@@ -6,16 +6,17 @@
 	font-size: 1.1rem;
 	font-family: 'Lato', sans-serif;
 }
-body
-{
+
+body {
 	max-height: 100vh;
-	overflow-y: hidden;
+	/* overflow-y: hidden; */
 }
+
 .main-contain {
-	margin-block-start: 50px;
 	max-width: 100%;
 	display: flex;
 }
+
 h1 {
 	width: 100%;
 	font-size: 1.5rem;
@@ -23,115 +24,186 @@ h1 {
 	margin-block-end: 50px;
 	text-shadow: rgba(100, 100, 10, 0.4) 0 3px 5px;
 }
-.contain 
-{
-	/* min-width: 450px; */
-	width: 40%;
-	margin-inline-start: 45px;
+h2 {
+	border-top: 1px solid rgba(0, 0, 0, .4);
+	width: 100%;
+	font-size: 1.3rem;
+	text-align: center;
+	padding-top: 20px;
+	margin-block-start: 50px;
+	margin-block-end: 25px;
+	text-shadow: rgba(100, 100, 10, 0.4) 0 3px 5px;
 }
-.contain a
-{
+
+.contain {
+	/* min-width: 450px; */
+	padding-top: 50px;
+	padding:50px 40px;
+	position: relative;
+	width: 40%;
+	min-width: 300px;
+	max-width: 500px;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid rgba(0, 0, 0, .2);
+	min-height: 100vh;
+}
+
+.bt-download {
+	text-align: center;
+	display: block;
 	text-decoration: none;
-	border: 1px solid rgba(0, 0, 0, 0.4);
+	border: 2px solid rgba(0, 0, 0, 0.2);
 	border-radius: 15px;
-	background-color: rgb(0, 155, 255);
+	background-color: rgb(0, 60, 200);
 	color: #fff;
+	font-weight: bold;
 	text-shadow: #000 0 0 2px;
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px;
 	padding: 8px 10px;
 }
-.contain a:hover
-{
-	
-	background-color: rgb(0, 100, 205);
+
+.bt-download:hover,
+.bt-download:active {
+	background-color: rgb(0, 60, 150);
 }
-.updates
-{
-	border: 1px solid #000;
+
+.contain-graphics-select {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.contain-graphics-select .bt-graphics-select {
+	margin: 3px;
 	border-radius: 10px;
-	width: 300px;
+	min-width: 140px;
+	border: 1px solid rgba(0, 0, 0, .2);
+	background-color: rgb(73, 200, 0);
+	color: #fff;
+	padding: 5px 8px;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px;
+}
+
+.contain-graphics-select .bt-graphics-select:hover ,.contain-graphics-select .bt-graphics-select:active  {
+	background-color: rgb(30, 150, 0);
+}
+
+.contain-graphics-select .selected {
+	background-color: rgb(30, 150, 0);
+	text-decoration: underline;
+}
+
+.updates {
+	border: 1px solid rgba(0, 0, 0, .4);
+	border-radius: 10px;
+	width: 100%;
 	display: inline-block;
 	padding: 10px 20px;
 	margin-block-end: 10px;
 	margin-bottom: 20px;
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 3px;
 }
-.contain_graficos 
-{
-	display: flex;
+
+.contain_graficos {
+	position: relative;
+	/* display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: center; */
 	background-color: #fff;
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 	width: 70%;
 }
-.contain-graphics
-{
-	overflow-y: scroll;
+
+.contain-graphics {
+	/* overflow-x: scroll; */
 	width: 100%;
 	max-height: 100vh;
 	min-width: 700px;
-	width: 100vw;
+	/* width: 100vw; */
+	margin-top: 60px;
 }
 
-.graficos 
-{
+.graficos {
 	margin-inline-end: 30px;
 	margin-inline-start: 50px;
-	display: block;
+	display: none;
 	margin-block-end: 50px;
 	min-height: 304px;
 }
 
-#myChart 
-{
-	width: 50vw !important;
+#myChart {
+	/* width: 50vw !important; */
 	min-width: 600px !important;
 }
-.button-toggle 
-{
+
+.button-toggle {
 	display: none;
-	
+
 }
-.button-toggle:hover 
+
+/* .button-toggle:hover 
 {
 	background-color: rgba(0, 0, 0, 0.2);
-}
+} */
 
 @media (max-width: 1250px) {
 	.contain {
-		width: 100vw;
+		width: 100%;
+		padding: 0 20px;
+		max-width: 100%;
 	}
+
+	.updates {
+		width: 100%;
+	}
+
 	.button-toggle {
 		position: fixed;
-		display: block;
-		width: 30px;
-		height: 100vh;
+		display: none;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
 		top: 0;
+		color: #fff;
+		font-weight: 900;
 		/* top: 50%; */
-		left: 0;
+		right: 0;
 		/* transform: translateY(-50%); */
-		background-color: rgba(0, 0, 0, 0.05);
+		background-color: rgb(100, 0, 0, .5);
 		border: none;
 		cursor: pointer;
 		z-index: 100;
-		border-top-right-radius:  100%;
-		border-bottom-right-radius:  100%;
 	}
+
+	.button-toggle:focus {
+		outline: none;
+	}
+
 	.contain_graficos {
 		position: absolute;
 		left: 0;
 		top: 0;
 		width: 0;
-		height: max-content;
-		max-width: 100vw;
+		height: 100vh;
+		min-height: 700px;
 		z-index: 50;
+		overflow-y: hidden;
 	}
+
+	.visible {
+		display: block;
+	}
+
 	#myChart {
 		width: 84vw !important;
 	}
+
 	.full-screen {
-		min-width: 650px;
+		/* min-width: 650px; */
 		width: 100%;
 	}
+}
+.visible-gb {
+	display: block;
 }
